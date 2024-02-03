@@ -33,7 +33,7 @@ public class Category {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User userId;
 
     @OneToMany(mappedBy = "category")
     private Set<Expense> expenses = new HashSet<>();
@@ -43,7 +43,7 @@ public class Category {
     }
 
     public Category(Long id, String name, User user) {
-        this.user = user;
+        this.userId = user;
         this.id = id;
         this.name = name;
     }
@@ -83,7 +83,7 @@ public class Category {
     }
 
     public User getUser() {
-        return user;
+        return userId;
     }
 
     @Override

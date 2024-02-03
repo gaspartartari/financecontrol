@@ -18,14 +18,14 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double ammount;
+    private Double amount;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User userId;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -35,19 +35,19 @@ public class Expense {
 
     }
 
-    public Expense(Long id, Double ammount, Instant date, User user) {
-        this.user = user;
+    public Expense(Long id, Double amount, Instant date, User user) {
+        this.userId = user;
         this.id = id;
-        this.ammount = ammount;
+        this.amount = amount;
         this.date = date;
     }
 
     public Double getAmmount() {
-        return ammount;
+        return amount;
     }
 
-    public void setAmmount(Double ammount) {
-        this.ammount = ammount;
+    public void setAmmount(Double amount) {
+        this.amount = amount;
     }
 
     public Instant getDate() {
@@ -67,7 +67,7 @@ public class Expense {
     }
 
     public User getUser(){
-        return user;
+        return userId;
     }
 
     public Category getCategory(){
