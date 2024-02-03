@@ -2,10 +2,13 @@ package com.myprojects.financecontrol.entities;
 
 import java.time.Instant;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,13 +19,24 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double ammount;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant date;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Expense(){
 
     }
 
-    public Expense(Long id, Double ammount, Instant date) {
+    public Expense(Long id, Double ammount, Instant date, User user) {
+        this.user = user;
         this.id = id;
         this.ammount = ammount;
         this.date = date;
@@ -50,6 +64,18 @@ public class Expense {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    public Category getCategory(){
+        return category;
+    }
+
+    public void setCategory(Category category){
+        this.category = category;
     }
 
     @Override

@@ -1,12 +1,18 @@
 package com.myprojects.financecontrol.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,11 +25,21 @@ public class User {
 
     @Column(unique = true)
     private String email;
-    
+
     private String username;
     private String password;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Expense> expenses = new HashSet<>();
 
     public User(){
 
@@ -72,16 +88,39 @@ public class User {
         return createdAt;
     }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
+    @PrePersist
+    public void prePersist(){
+        createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        updatedAt = Instant.now();
+    }
+
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
+    }
+
+    public Set<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void addExpense(Expense expense) {
+        this.expenses.add(expense);
+    }
+
+    public void removeExpense(Expense expense){
+        this.expenses.remove(expense);
     }
 
     @Override
