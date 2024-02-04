@@ -1,6 +1,6 @@
 
-INSERT INTO tb_user (email, username, password, created_At) VALUES ( 'maria@gmail.com', 'Maria Brown', '$2a$10$Sbh.lFIkvbhA/gBHLX2rJ.8IAd0e0JWOpP0l99IyDRfzqKhgNMTNS', NOW());
-INSERT INTO tb_user (email, username, password, created_At) VALUES ( 'alex@gmail.com', 'Alex Green', '$2a$10$Sbh.lFIkvbhA/gBHLX2rJ.8IAd0e0JWOpP0l99IyDRfzqKhgNMTNS',  NOW());
+INSERT INTO tb_user (email, name, password, created_At) VALUES ( 'maria@gmail.com', 'Maria Brown', '$2a$10$Jzvp07GPTSEfEmF3K8/QL.SpZLKtycvhs35Xc27fOW3J3UqbXHpHK', NOW());
+INSERT INTO tb_user (email, name, password, created_At) VALUES ( 'alex@gmail.com', 'Alex Green', '$2a$10$Jzvp07GPTSEfEmF3K8/QL.SpZLKtycvhs35Xc27fOW3J3UqbXHpHK',  NOW());
 
 INSERT INTO tb_category (name, created_At, user_id) VALUES ('Food', NOW(), 1);
 INSERT INTO tb_category (name, created_At, user_id) VALUES ('House', NOW(), 1);

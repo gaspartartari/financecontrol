@@ -1,8 +1,12 @@
 package com.myprojects.financecontrol.entities;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +23,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_user")
-public class User {
+public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +32,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String username;
+    private String name;
     private String password;
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
@@ -52,10 +56,10 @@ public class User {
 
     }
 
-    public User(Long id, String email, String username, String password) {
+    public User(Long id, String email, String name, String password) {
         this.id = id;
         this.email = email;
-        this.username = username;
+        this.name = name;
         this.password = password;
     }
 
@@ -75,12 +79,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -165,5 +169,39 @@ public class User {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+       return roles;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAccountNonExpired'");
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAccountNonLocked'");
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isCredentialsNonExpired'");
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isEnabled'");
     }
 }
