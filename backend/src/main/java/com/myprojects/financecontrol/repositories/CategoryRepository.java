@@ -10,8 +10,10 @@ import com.myprojects.financecontrol.entities.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     
     @Query(value = 
-        "SELECT cat FROM User usr JOIN usr.categories cat WHERE usr.id = :id",
-        countQuery = "SELECT count(cat) FROM User usr JOIN usr.categories cat WHERE usr.id = :id")
-    Page<Category> searchCategoriesByUserId(Long id, Pageable pageable);
+        "SELECT cat FROM User usr JOIN usr.categories cat WHERE usr.id = :id "
+        + "AND UPPER(cat.name) LIKE UPPER(CONCAT('%', :name, '%'))",
+        countQuery = "SELECT count(cat) FROM User usr JOIN usr.categories cat WHERE usr.id = :id "
+        + "AND UPPER(cat.name) LIKE UPPER(CONCAT('%', :name, '%'))")
+    Page<Category> searchCategoriesByUserId(Long id, String name, Pageable pageable);
 
 }

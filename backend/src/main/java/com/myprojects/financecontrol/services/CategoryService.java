@@ -21,9 +21,9 @@ public class CategoryService {
     private UserService userService;
     
     @Transactional(readOnly = true)
-    public Page<CategoryDTO> findAll(Pageable pageable){
+    public Page<CategoryDTO> findAll(String name, Pageable pageable){
         User user = userService.authenticated();
-        Page<Category> result = categoryRepository.searchCategoriesByUserId(user.getId(), pageable);
+        Page<Category> result = categoryRepository.searchCategoriesByUserId(user.getId(), name, pageable);
         return result.map(cat -> new CategoryDTO(cat));
     }
 }
