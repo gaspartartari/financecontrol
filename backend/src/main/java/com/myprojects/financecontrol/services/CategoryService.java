@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myprojects.financecontrol.DTO.CategoryDTO;
 import com.myprojects.financecontrol.entities.Category;
+import com.myprojects.financecontrol.entities.User;
 import com.myprojects.financecontrol.repositories.CategoryRepository;
 
 @Service
@@ -15,11 +16,14 @@ public class CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private UserService userService;
     
     @Transactional(readOnly = true)
     public Page<CategoryDTO> findAll(Pageable pageable){
-        
-        Page<Category> result = categoryRepository.findAll(pageable);
+        User user = userService.authenticated();
+        Page<Category> result = categoryRepository.searchCategoriesByUserId(user.getId(), pageable);
         return result.map(cat -> new CategoryDTO(cat));
     }
 }
