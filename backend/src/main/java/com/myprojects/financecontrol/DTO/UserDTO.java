@@ -36,7 +36,7 @@ public class UserDTO {
             categories.add(dto);
         }
         for(Expense exp: user.getExpenses()){
-            ExpenseDTO dto = new ExpenseDTO(exp.getId(), exp.getAmmount(), exp.getCategory().getName());
+            ExpenseDTO dto = new ExpenseDTO(exp.getId(), exp.getAmmount(), exp.getCategory().getName(), exp.getDate());
             expenses.add(dto);
         }
     }
