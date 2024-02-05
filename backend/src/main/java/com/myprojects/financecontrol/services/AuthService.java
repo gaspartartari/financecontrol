@@ -13,7 +13,7 @@ public class AuthService {
     
     public void validateSelfOrAdmin (Long userId){
         User user = userService.authenticated();
-        if (!user.hasHole("ROLE_ADMIN") && !user.getId().equals(userId))
+        if (!user.hasRole("ROLE_ADMIN") && !user.getId().equals(userId))
             throw new ForbiddenExcepetion("Access deined");
     }
 }

@@ -138,7 +138,7 @@ public class User implements UserDetails{
         roles.add(role);
     }
 
-    public boolean hasHole(String authority){
+    public boolean hasRole(String authority){
         for (Role role : roles){
             if (role.getAuthority().equals(authority));
             return true;

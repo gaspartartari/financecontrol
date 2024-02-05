@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myprojects.financecontrol.DTO.UserDTO;
+import com.myprojects.financecontrol.DTO.UserMinDTO;
 import com.myprojects.financecontrol.entities.Role;
 import com.myprojects.financecontrol.entities.User;
 import com.myprojects.financecontrol.projections.UserDetailsProjection;
@@ -54,8 +55,8 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
-    public UserDTO getMe(){
+    public UserMinDTO getMe(){
         User user = authenticated();
-        return new UserDTO(user);
+        return new UserMinDTO(user);
     }
 }

@@ -41,4 +41,24 @@ public class UserDTO {
         }
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Set<CategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public Set<ExpenseDTO> getExpenses() {
+        return expenses;
+    }
+
 }

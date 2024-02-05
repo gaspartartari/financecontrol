@@ -4,12 +4,9 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +24,7 @@ public class ExpenseController {
     private ExpenseService expenseService;
     
     
-     @GetMapping
+    @GetMapping
     public ResponseEntity<Page<ExpenseDTO>> getAllExepnses(
         @RequestParam(name = "min", defaultValue = "") String minDateString, 
         @RequestParam(name = "max", defaultValue = "") String maxDateString,

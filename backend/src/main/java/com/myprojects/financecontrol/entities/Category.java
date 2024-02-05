@@ -86,6 +86,14 @@ public class Category {
         return userId;
     }
 
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

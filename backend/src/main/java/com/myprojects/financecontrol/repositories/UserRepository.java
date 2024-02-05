@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import com.myprojects.financecontrol.entities.User;
 import com.myprojects.financecontrol.projections.UserDetailsProjection;
 
@@ -19,5 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
                 + "WHERE tb_user.email = :email ")
     public List<UserDetailsProjection> searchUsersAndRolesByEmail(String email);
 
-    public Optional<User> findByEmail(String username);
+    
+    public Optional<User> findByEmail(String email);
+
 }
