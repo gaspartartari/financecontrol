@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.myprojects.financecontrol.entities.User;
 import com.myprojects.financecontrol.services.excepetions.ForbiddenExcepetion;
 
+
 @Service
 public class AuthService {
     @Autowired
